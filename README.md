@@ -19,8 +19,28 @@ Provide step-by-step instructions on how to install and set up your project loca
 
 ```bash
 # Example installation steps
-git clone https://github.com/yourusername/project-name.git
-cd project-name
+
+## Installation
+1. Clone the repository:
+git clone https://github.com/Mo7amed6000/ArabicEntityResolver.git
+
+2. Navigate into the project directory:
+cd ArabicEntityResolver
+
+3. Create a virtual environment:
+python -m venv venv
+
+4. Activate the virtual environment:
+On Windows:
+venv\Scripts\activate
+On macOS/Linux:
+source venv/bin/activate
+
+5. Install dependencies:
 pip install -r requirements.txt
+
+6. Apply migrations:
 python manage.py migrate
+
+7. To run the development server:
 python manage.py runserver
