@@ -21,7 +21,7 @@ Build a web platform that identifies and disambiguates named entities (people, p
 
 Here is the installation process. Please make sure you have Python 3 installed as your main kernel. You can use any text editor, but we recommend using VSCode for development.
 
-# installation steps
+### installation steps
 
 1. Clone the repository:
 ```bash
