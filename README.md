@@ -3,11 +3,11 @@
 ## Description
 
 Build a web platform that identifies and disambiguates named entities (people, places, organizations) in Arabic texts, by exploiting lexical databases adapted to the Arabic language and its dialects.
-Key Features:
+### Key Features:
 - Text preprocessing to extract potential named entities.
 - Use of lexical databases to disambiguate entities based on context.
 - Web interface allowing users to submit texts and view identified named entities.
-Sources and resources to use:
+### Sources and resources to use:
 - Corpus: Collection of texts in Arabic containing named entities.
 - Lexical Databases: Use of Arabic lexical databases for entity disambiguation.
 - Structured Datasets: Use of annotated datasets for training entity recognition models.
