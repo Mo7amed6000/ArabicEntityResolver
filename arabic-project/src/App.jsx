@@ -5,6 +5,7 @@ import gifImage from "./assets/arrowgif.gif";
 import { useState } from "react";
 import React, { Suspense } from "react";
 import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
+import axios from 'axios';
 
 import { gsap } from "gsap";
 import shineimage from "./assets/shine.png";
@@ -13,6 +14,68 @@ const Spline = React.lazy(() => import("@splinetool/react-spline"));
 gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger plugin
 
 function App() {
+  const [prediction, setPrediction] = useState(null);
+  const [inputText, setInputText] = useState('');
+
+  const makePredictionRequest = async () => {
+    console.log(inputText);
+    try {
+      const response = await axios.post(
+        'http://localhost:8000/prediction/prediction/',
+        { text: inputText }, // Data payload
+        { headers: { "Content-Type": "application/json" } } // Headers
+      );
+      console.log(response)
+      setPrediction(response.data.prediction); // Set the prediction state
+      handlePredictionResponse(response.data.prediction)
+    } catch (error) {
+      console.error('Error making prediction request:', error);
+    }
+  };
+  
+  const handleInputChange = (event) => {
+    setInputText(event.target.value); // Update state with input value
+  };
+
+  const handlePredictionResponse = (predictionData) => {
+    // Initialize objects to store words for each category
+    const categories = {
+      'B-LOC': [],
+      'B-MIS': [],
+      'B-ORG': [],
+      'B-PER': [],
+      'I-LOC': [],
+      'I-MIS': [],
+      'I-ORG': [],
+      'I-PER': [],
+      'O': []
+    };
+  
+    // Iterate over the prediction data
+    predictionData.forEach((wordPrediction) => {
+      console.log(wordPrediction)
+      const [word, category] = wordPrediction.split(':'); // Split word and category
+  
+      // Add word to the corresponding category
+      categories[category].push(word);
+    });
+  
+    // Update the content of each div with the words from the corresponding category
+    Object.keys(categories).forEach((category, index) => {
+      const divClassName = `item${index + 1}`; // Get the class name of the div
+      const words = categories[category].join(' '); // Join words with space
+      
+      // Update the content of the div
+      const divElement = document.querySelector(`.${divClassName}`);
+      console.log(divElement)
+      divElement.textContent = category+ ' : \n'
+      if (divElement) {
+        
+        divElement.textContent += words 
+      }
+    });
+  };
+  
   
   const mainContentRef = useRef(null);
   // Run only once on component mount
@@ -153,6 +216,8 @@ function App() {
     };
   }, []);
   const handleFadeOut = () => {
+    console.log(inputText)
+    makePredictionRequest();
     toggle();
     handletoggle();
     gsap.to(".fade-out", {
@@ -187,6 +252,41 @@ function App() {
       duration: 1,
       maxHeight: 360,
       delay: 0.85,
+      ease: "expo.inOut",
+    });
+    gsap.to(".item5", {
+      opacity: 1,
+      duration: 1,
+      maxHeight: 360,
+      delay: 0.95,
+      ease: "expo.inOut",
+    });
+    gsap.to(".item6", {
+      opacity: 1,
+      duration: 1,
+      maxHeight: 360,
+      delay: 1.05,
+      ease: "expo.inOut",
+    });
+    gsap.to(".item7", {
+      opacity: 1,
+      duration: 1,
+      maxHeight: 360,
+      delay: 1.15,
+      ease: "expo.inOut",
+    });
+    gsap.to(".item8", {
+      opacity: 1,
+      duration: 1,
+      maxHeight: 360,
+      delay: 1.25,
+      ease: "expo.inOut",
+    });
+    gsap.to(".item9", {
+      opacity: 1,
+      duration: 1,
+      maxHeight: 360,
+      delay: 1.35,
       ease: "expo.inOut",
     });
     gsap.to(".fade-out1", {
@@ -414,6 +514,8 @@ function App() {
             <input
               ref={containerRef}
               type="text"
+              onChange={handleInputChange} // Handle input change
+              value={inputText} // Bind input value to state variable
               placeholder="Enter Your Text and extract The main entities"
               style={{
                 border: "none",
@@ -438,7 +540,7 @@ function App() {
               style={{ width: "20px", height: "auto" }}
             ></img>
             <div style={{ width: "10px" }}></div>
-            <span>Generate</span>
+            <span>Predict</span>
           </div>
         </div>
         <div style={{ height: "5%" }}></div>
@@ -456,11 +558,12 @@ function App() {
               overflowY: "auto",
               maxHeight: "0",
               width: "33%",
+              color: "black",
               backgroundColor: "white",
               height: "360px",
               marginRight: "10px",
             }}
-          ></div>
+          ></div>{" "}
           <div
             className="item2"
             style={{
@@ -478,23 +581,85 @@ function App() {
             style={{
               overflowY: "auto",
               maxHeight: "0px",
+              color: "black",
               width: "33%",
               backgroundColor: "white",
               height: "360px",
               marginRight: "10px",
             }}
-          ></div>
+          ></div>{" "}
           <div
             className="item4"
             style={{
               overflowY: "auto",
               maxHeight: "0px",
+              color: "black",
               width: "33%",
               backgroundColor: "white",
               height: "360px",
               marginRight: "10px",
             }}
-          ></div>
+          ></div>{" "}
+          <div
+            className="item5"
+            style={{
+              overflowY: "auto",
+              maxHeight: "0px",
+              color: "black",
+              width: "33%",
+              backgroundColor: "white",
+              height: "360px",
+              marginRight: "10px",
+            }}
+          ></div>{" "}
+          <div
+            className="item6"
+            style={{
+              overflowY: "auto",
+              maxHeight: "0px",
+              color: "black",
+              width: "33%",
+              backgroundColor: "white",
+              height: "360px",
+              marginRight: "10px",
+            }}
+          ></div>{" "}
+          <div
+            className="item7"
+            style={{
+              overflowY: "auto",
+              maxHeight: "0px",
+              width: "33%",
+              color: "black",
+              backgroundColor: "white",
+              height: "360px",
+              marginRight: "10px",
+            }}
+          ></div>{" "}
+          <div
+            className="item8"
+            style={{
+              overflowY: "auto",
+              maxHeight: "0px",
+              width: "33%",
+              color: "black",
+              backgroundColor: "white",
+              height: "360px",
+              marginRight: "10px",
+            }}
+          ></div>{" "}
+          <div
+            className="item9"
+            style={{
+              overflowY: "auto",
+              maxHeight: "0px",
+              width: "33%",
+              color: "black",
+              backgroundColor: "white",
+              height: "360px",
+              marginRight: "10px",
+            }}
+          ></div>{" "}
         </div>
       </div>
     </div>
