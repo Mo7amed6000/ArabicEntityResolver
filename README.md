@@ -19,23 +19,25 @@ Build a web platform that identifies and disambiguates named entities (people, p
 
 ## Installation
 
-Here is the installation process. Please make sure you have Python 3 installed as your main kernel. You can use any text editor, but we recommend using VSCode for development.
-
-### installation steps
+Here is the installation process. Please make sure you have Python 3 and node installed as your main kernel. You can use any text editor, but we recommend using VSCode for development.
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/Mo7amed6000/ArabicEntityResolver.git
 ```
-3. Navigate into the project directory:
+
+### installation steps for the backend Django 
+
+
+2. Navigate into the project directory:
 ```bash
 cd ArabicEntityResolver
 ```
-5. Create a virtual environment:
+3. Create a virtual environment:
 ```bash
 python -m venv .venv
 ```
-7. Activate the virtual environment:
+4. Activate the virtual environment:
 #### On Windows:
 ```bash
 .venv\Scripts\activate
@@ -44,15 +46,36 @@ python -m venv .venv
 ```bash
 source .venv/bin/activate
 ```
-9. Install dependencies:
+5. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-11. Apply migrations:
+6. Apply migrations:
 ```bash
 python manage.py migrate
 ```
-13. To run the development server:
+7. To run the development server:
 ```bash
 python manage.py runserver
 ```
+
+
+### installation steps for the Frontend React 
+
+2. Navigate into the project directory:
+```bash
+cd arabic-project
+```
+3. Install dependencies:
+```bash
+npm install
+```
+4. To run the development server:
+```bash
+npm run dev
+```
+5. And if this error happed : Bindings not found
+```bash
+npm i -D @swc/cli @swc/core
+```
+
