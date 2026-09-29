@@ -79,3 +79,7 @@ npm run dev
 npm i -D @swc/cli @swc/core
 ```
 
+## License
+
+This project is licensed under the MIT License.
+You are free to use, modify, and distribute this project, provided that the original copyright notice and license are retained.
