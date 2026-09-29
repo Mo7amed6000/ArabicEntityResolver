@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:5173',
+    '*',
 )
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
+CSRF_TRUSTED_ORIGINS = ['*']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-szb90mhl@*6h#fl*e0&jx&ltkw1f^fqy)so)k8(4&g^a#vqnni'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
